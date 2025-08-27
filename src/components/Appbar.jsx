@@ -9,18 +9,19 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import Tooltip from "@mui/material/Tooltip";
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import { useNavigate } from "react-router-dom";
 
 const pages = [
-  "Visão Geral",
-  "Lançamentos",
-  "Limites de Gastos",
-  "Metas",
-  "Open Finance"
+  { title: "Visão Geral", path: "/overview" },
+  { title: "Lançamentos", path: "/transactions" },
+  { title: "Metas", path: "/financial-goal" },
+  { title: "Open Finance", path: "/open-finance" },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Appbar() {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -37,6 +38,11 @@ export default function Appbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleNavigate = (path) => {
+    navigate(path);
+    handleCloseNavMenu();
   };
 
   return (
@@ -82,9 +88,9 @@ export default function Appbar() {
             sx={{ display: { xs: "block", md: "none" } }}
           >
             {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu} dense>
+              <MenuItem key={page.title} onClick={() => handleNavigate(page.path)} dense>
                 <Typography variant="body2" sx={{ textAlign: "center" }}>
-                  {page}
+                  {page.title}
                 </Typography>
               </MenuItem>
             ))}
@@ -152,8 +158,8 @@ export default function Appbar() {
           >
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.title}
+                onClick={() => navigate(page.path)}
                 sx={{
                   color: "white",
                   display: "block",
@@ -165,7 +171,7 @@ export default function Appbar() {
                   textTransform: "none",
                 }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
@@ -179,7 +185,7 @@ export default function Appbar() {
             }}
           >
             <Tooltip title="praticar">
-              <IconButton size="big"> 
+              <IconButton size="big">
                 <SportsEsportsIcon sx={{ color: "white" }} />
               </IconButton>
             </Tooltip>

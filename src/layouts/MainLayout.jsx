@@ -9,29 +9,22 @@ export default function MainLayout() {
   return (
     <>
       <Appbar />
+
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start", 
-          alignItems: "center",
+          backgroundColor: "white",
+          justifyContent: "center",
           width: "100%",
-          padding: "16px",
-          marginTop: "80px",
+          minHeight: "calc(100vh - 64px - 64px)", 
+          mt: "30px", 
+          px: 2, 
         }}
       >
-        <motion.div
-          key={location.pathname}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "tween", restDelta: 0.5 }}
-          style={{ width: "100%", maxWidth: "600px" }} // coluna centralizada
-        >
-          <Outlet />
-        </motion.div>
+        <Outlet />
       </Box>
-      <Divider />
-      <AppFooter/>
+
+      <AppFooter />
     </>
   );
 }
