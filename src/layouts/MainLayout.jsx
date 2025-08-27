@@ -13,7 +13,6 @@ export default function MainLayout() {
       <Box
         sx={{
           display: "flex",
-          backgroundColor: "white",
           justifyContent: "center",
           width: "100%",
           minHeight: "calc(100vh - 64px - 64px)", 
