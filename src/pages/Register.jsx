@@ -1,11 +1,8 @@
+import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
-import { Box, Button, Container, Typography, IconButton } from "@mui/material";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import { useNavigate } from "react-router-dom";
-import LoginForm from "../components/forms/LoginForm";
+import RegisterForm from "../components/forms/RegisterForm";
 
-function Login() {
-  const navigate = useNavigate();
+export default function Register() {
   return (
     <>
       <Box>
@@ -26,11 +23,9 @@ function Login() {
           </Box>
         </Box>
         <Container sx={{ display: "flex", justifyContent: "center" }}>
-          <LoginForm />
+          <RegisterForm />
         </Container>
       </Box>
     </>
   );
 }
-
-export default Login;

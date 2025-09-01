@@ -99,7 +99,7 @@ export default function LoginForm() {
             </Button>
           </Stack>
           <Box sx={{ display: "flex", justifyContent: "center", margin: "0" }}>
-            <Link color="secondary" variant="body1" href="/cadastro" underline="always">
+            <Link color="secondary" variant="body1" href="/register" underline="always">
               Cadastrar-se
             </Link>
           </Box>
