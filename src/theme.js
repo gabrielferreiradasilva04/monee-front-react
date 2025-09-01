@@ -6,7 +6,7 @@ const theme = createTheme({
       main: '#22C55E', // azul principal
     },
     secondary: {
-      main: '#2563EB', // rosa/vinho secundário
+      main: '#0A1744', // rosa/vinho secundário
     },
     success: {
       main: '#4caf50', // verde para status positivo
