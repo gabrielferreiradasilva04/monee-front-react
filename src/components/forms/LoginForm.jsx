@@ -37,10 +37,7 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
-    console.log("Entrou no método");
-    console.log(email, password);
-
+    
     api
       .post("/auth/login", { email, password }, {withCredentials: true})
       .then((response) => {
