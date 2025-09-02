@@ -12,9 +12,29 @@ import {
   Link,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
 
 
 export default function RegisterForm() {
+
+  //variáveis para o cadastro do usuário
+  //Json padrão:
+  /**
+   * {
+    "name": "Gabriel Ferreira da Silva",
+    "email": "gabrielferreirasilva@gmail.com",
+    "password": "123456",
+    "phone": "(41) 996241805",
+    "userRole": "ADMINISTRATOR"
+    }
+   */
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const userRole = "COMMON";
+
   return (
     <>
       <Card

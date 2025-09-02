@@ -15,7 +15,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/axiosConfig.js";
 import { useNotification } from "../context/NotificationProvider.jsx";
@@ -37,7 +37,7 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    
+
     api
       .post("/auth/login", { email, password }, {withCredentials: true})
       .then((response) => {
