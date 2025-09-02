@@ -7,6 +7,7 @@ import FinancialGoal from "../pages/FinancialGoal";
 import OpenFinance from "../pages/OpenFinance";
 import Transactions from "../pages/Transactions";
 import Register from "../pages/Register";
+import NotFound from "../pages/NotFound";
 
 export default function AppRoutes() {
   return (
@@ -18,11 +19,13 @@ export default function AppRoutes() {
            <Route path="financial-goal" element={<FinancialGoal />}></Route>
            <Route path="open-finance" element={<OpenFinance />}></Route>
            <Route path="transactions" element={<Transactions />}></Route>
+           <Route path="not-found" element={<NotFound />}></Route>
         </Route>
         <Route path="/" element={<AuthLayout />}>
         {/*rotas de autenticação*/}
           <Route path="login" element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>
+          
         </Route>
       </Routes>
     </BrowserRouter>
