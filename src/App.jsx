@@ -1,9 +1,12 @@
-import Routes from "./routes/AppRoutes"
+import Routes from "./routes/AppRoutes";
+import { NotificationProvider } from "./components/context/NotificationProvider";
 
 function App() {
   return (
-     <Routes />
-  )
+    <NotificationProvider>
+      <Routes />
+    </NotificationProvider>
+  );
 }
 
-export default App
+export default App;

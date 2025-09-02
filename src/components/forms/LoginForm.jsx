@@ -18,10 +18,13 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/axiosConfig.js";
+import { useNotification } from "../context/NotificationProvider.jsx";
 import React from "react";
 
 export default function LoginForm() {
 
+  //variáveis para as notificações
+  const { showNotification } = useNotification();
   //variáveis de controle para o login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,9 +48,9 @@ export default function LoginForm() {
         navigate("/overview")
       })
       .catch((err) => {
-        setError(
-          err.response?.data?.message ||
-            "Credenciais inválidas ou desabilitadas"
+        showNotification(
+          err.response?.data?.message || "Credenciais inválidas ou desabilitadas",
+          "error"
         );
       })
       .finally(() => setLoading(false));
