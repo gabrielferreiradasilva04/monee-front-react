@@ -24,6 +24,7 @@ export default function LoginForm() {
 
   //variáveis para as notificações
   const { showNotification } = useNotification();
+
   //variáveis de controle para o login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,15 +33,31 @@ export default function LoginForm() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  //controles de formulário
+  const [formErrors, setFormErrors] = useState({});
+  
+  const validateForm = () => {
+    let tempErrors= {};
+
+    if(!email.trim()) tempErrors.email = "Preencha o e-mail";
+    if(!password) tempErrors.password = "Preencha a senha";
+
+    setFormErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
+
+    if(!validateForm()){
+      setLoading(false);  
+      return; 
+    }
 
     api
       .post("/auth/login", { email, password }, {withCredentials: true})
       .then((response) => {
-        console.log("Login OK", response.data);
         navigate("/overview")
       })
       .catch((err) => {
@@ -98,6 +115,8 @@ export default function LoginForm() {
               placeholder="fulano@dominio.com"
               size="small"
               onChange={(e) => setEmail(e.target.value)}
+              error={!!formErrors.email}
+              helperText={formErrors.email}
             ></TextField>
             <TextField
               type="password"
@@ -115,6 +134,8 @@ export default function LoginForm() {
               label="Senha"
               size="small"
               onChange={(e) => setPassword(e.target.value)}
+              error={!!formErrors.password}
+              helperText={formErrors.password}
             ></TextField>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "end", margin: "0" }}>
