@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+import { AuthProvider } from "../components/context/AuthContext";
 import Login from "../pages/Login";
 import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
@@ -11,23 +13,25 @@ import NotFound from "../pages/NotFound";
 
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-           {/*Rotas padrões*/}
-           <Route path="overview" element={<Overview />}></Route>
-           <Route path="financial-goal" element={<FinancialGoal />}></Route>
-           <Route path="open-finance" element={<OpenFinance />}></Route>
-           <Route path="transactions" element={<Transactions />}></Route>
-           <Route path="not-found" element={<NotFound />}></Route>
-        </Route>
-        <Route path="/" element={<AuthLayout />}>
-        {/*rotas de autenticação*/}
-          <Route path="login" element={<Login />}></Route>
-          <Route path="register" element={<Register />}></Route>
-          
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            {/*Rotas padrões protegidas*/}
+
+            <Route path="overview" element={<ProtectedRoute><Overview /></ProtectedRoute>}></Route>
+            <Route path="financial-goal" element={<FinancialGoal />}></Route>
+            <Route path="open-finance" element={<OpenFinance />}></Route>
+            <Route path="transactions" element={<Transactions />}></Route>
+            <Route path="not-found" element={<NotFound />}></Route>
+          </Route>
+          <Route path="/" element={<AuthLayout />}>
+            {/*rotas de autenticação*/}
+            <Route path="login" element={<Login />}></Route>
+            <Route path="register" element={<Register />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }

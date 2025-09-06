@@ -14,13 +14,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import {useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/axiosConfig.js";
 import { useNotification } from "../context/NotificationProvider.jsx";
 import React from "react";
+import { useAuth } from "../context/AuthContext.jsx";
 
 export default function LoginForm() {
+  //vairáiveis de controle de autenticacao
+  const { login } = useAuth();
 
   //variáveis para as notificações
   const { showNotification } = useNotification();
@@ -35,34 +38,38 @@ export default function LoginForm() {
 
   //controles de formulário
   const [formErrors, setFormErrors] = useState({});
-  
-  const validateForm = () => {
-    let tempErrors= {};
 
-    if(!email.trim()) tempErrors.email = "Preencha o e-mail";
-    if(!password) tempErrors.password = "Preencha a senha";
+  const validateForm = () => {
+    let tempErrors = {};
+
+    if (!email.trim()) tempErrors.email = "Preencha o e-mail";
+    if (!password) tempErrors.password = "Preencha a senha";
 
     setFormErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
-    if(!validateForm()){
-      setLoading(false);  
-      return; 
+    if (!validateForm()) {
+      setLoading(false);
+      return;
     }
 
     api
-      .post("/auth/login", { email, password }, {withCredentials: true})
+      .post("/auth/login", { email, password }, { withCredentials: true })
       .then((response) => {
-        navigate("/overview")
+        console.log(login())
+        login();
+        console.log(login())
+        navigate("/overview");
       })
       .catch((err) => {
         showNotification(
-          err.response?.data?.message || "Credenciais inválidas ou desabilitadas",
+          err.response?.data?.message ||
+            "Credenciais inválidas ou desabilitadas",
           "error"
         );
       })

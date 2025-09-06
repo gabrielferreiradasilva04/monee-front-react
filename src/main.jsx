@@ -5,10 +5,10 @@ import App from "./App.jsx";
 import theme from "./theme.js";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  //<StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <App />
     </ThemeProvider>
-  </StrictMode>
+  //</StrictMode>
 );
