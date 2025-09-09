@@ -10,7 +10,9 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import Tooltip from "@mui/material/Tooltip";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../components/context/AuthContext.jsx";
 
 const pages = [
   { title: "Visão Geral", path: "/overview" },
@@ -21,6 +23,9 @@ const pages = [
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Appbar() {
+  //vairáiveis de controle de autenticacao
+  const { logout } = useAuth();
+
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -88,7 +93,11 @@ export default function Appbar() {
             sx={{ display: { xs: "block", md: "none" } }}
           >
             {pages.map((page) => (
-              <MenuItem key={page.title} onClick={() => handleNavigate(page.path)} dense>
+              <MenuItem
+                key={page.title}
+                onClick={() => handleNavigate(page.path)}
+                dense
+              >
                 <Typography variant="body2" sx={{ textAlign: "center" }}>
                   {page.title}
                 </Typography>
@@ -129,22 +138,10 @@ export default function Appbar() {
               display: "flex",
               alignItems: "end",
               justifyContent: "flex-end",
+              gap: 0.5,
             }}
           >
-            <IconButton disabled>
-              <MonetizationOnIcon />
-            </IconButton>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "bold",
-                color: "white", // verde ou cor da sua identidade
-                fontFamily: "'Poppins', sans-serif", // ou outra fonte mais estilizada
-                letterSpacing: 0,
-              }}
-            >
-              Monee
-            </Typography>
+
           </Box>
 
           <Box
@@ -169,6 +166,11 @@ export default function Appbar() {
                   fontSize: "0.875rem",
                   fontWeight: "bold",
                   textTransform: "none",
+                  borderRadius: "8px",
+                  transition: "background-color 0.3s ease", // suaviza a transição
+                  "&:hover": {
+                    backgroundColor: "rgba(255, 255, 255, 0.2)", // fundo claro no hover
+                  },
                 }}
               >
                 {page.title}
@@ -192,6 +194,17 @@ export default function Appbar() {
             <Tooltip title="Notificações">
               <IconButton size="big">
                 <NotificationsIcon sx={{ color: "white" }} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Logout">
+              <IconButton
+                size="big"
+                onClick={() => {
+                  logout();
+                  navigate("/login");
+                }}
+              >
+                <LogoutIcon sx={{ color: "white" }} />
               </IconButton>
             </Tooltip>
           </Box>

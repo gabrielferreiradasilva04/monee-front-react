@@ -61,9 +61,7 @@ export default function LoginForm() {
     api
       .post("/auth/login", { email, password }, { withCredentials: true })
       .then((response) => {
-        console.log(login())
-        login();
-        console.log(login())
+        login(true);
         navigate("/overview");
       })
       .catch((err) => {
