@@ -6,9 +6,10 @@ import theme from "./theme.js";
 
 createRoot(document.getElementById("root")).render(
   //<StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+  <ThemeProvider theme={theme}>
+    <CssBaseline>
       <App />
-    </ThemeProvider>
+    </CssBaseline>
+  </ThemeProvider>
   //</StrictMode>
 );

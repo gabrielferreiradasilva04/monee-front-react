@@ -17,7 +17,7 @@ const theme = createTheme({
     error: {
       main: '#f44336', // vermelho para erros
     },
-    actions: {
+    action: {
         main: '#F97316'
     },
     background: {
