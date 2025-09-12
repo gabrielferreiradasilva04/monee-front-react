@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 
 dayjs.locale("pt-br");
-export default function TransactionsHeader() {
+export default function TransactionHeader() {
   const [currentDate, setCurrentDate] = useState(dayjs());
 
   const handlePrevMonth = () => {
