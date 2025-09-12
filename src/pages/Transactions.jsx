@@ -1,11 +1,12 @@
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
-import TransactionsHeader from "../components/TransactionHeader";
-import { Box, Button, Icon, IconButton, Typography } from "@mui/material";
+import TransactionHeader from "../components/TransactionHeader";
+import { Box, Button, Divider, Icon, IconButton, Typography } from "@mui/material";
 import PageContainer from "../components/PageConteiner";
 import SearchBar from "../components/SearchBar";
 import AddIcon from "@mui/icons-material/Add";
 import TransactionBox from "../components/TransactionBox";
+import TransactionSummary from "../components/TransactionSummary";
 
 dayjs.locale("pt-br");
 export default function Transactions() {
@@ -78,7 +79,7 @@ export default function Transactions() {
               </Button>
             </Box>
           </Box>
-          <Box sx={{ marginBottom: "10px" }}>
+          <Box sx={{ marginBottom: "20px" }}>
             <SearchBar></SearchBar>
           </Box>
           <Box
@@ -99,6 +100,10 @@ export default function Transactions() {
                 type={tx.type}
               />
             ))}
+          </Box>
+          <Divider sx={{margin:"15px"}}/>
+          <Box>
+            <TransactionSummary/>
           </Box>
 
         </Box>
