@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     //verificar se o usuário está autenticado
     api
-      .get("/verify-auth", { withCredentials: true })
+      .get("/auth/verify-auth", { withCredentials: true })
       .then((res) => setIsAuthenticated(true))
       .catch(() => setIsAuthenticated(false))
       .finally(() => setLoading(false));
@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      api.post("/logout", {}, { withCredentials: true });
+      api.post("/auth/logout", {}, { withCredentials: true });
       setIsAuthenticated(false);
     } catch (error) {
       showNotification("Erro no processo de logout. Entre em contato conosco");

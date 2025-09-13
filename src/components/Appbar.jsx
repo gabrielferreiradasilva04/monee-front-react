@@ -9,7 +9,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import Tooltip from "@mui/material/Tooltip";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/context/AuthContext.jsx";
