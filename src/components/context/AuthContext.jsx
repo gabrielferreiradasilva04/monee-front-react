@@ -9,12 +9,22 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const { showNotification } = useNotification();
 
+  //guardar dados do usuário
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     //verificar se o usuário está autenticado
     api
       .get("/auth/verify-auth", { withCredentials: true })
-      .then((res) => setIsAuthenticated(true))
-      .catch(() => setIsAuthenticated(false))
+      .then((res) => {
+        setIsAuthenticated(true);
+        return api.get("/auth/me", { withCredentials: true });
+      })
+      .then((res) => setUser(res.data))
+      .catch(() => {
+        setIsAuthenticated(false);
+        setUser(null);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -24,6 +34,7 @@ export function AuthProvider({ children }) {
     try {
       api.post("/auth/logout", {}, { withCredentials: true });
       setIsAuthenticated(false);
+      setUser(null);
     } catch (error) {
       showNotification("Erro no processo de logout. Entre em contato conosco");
     }
@@ -39,4 +50,3 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
-    
