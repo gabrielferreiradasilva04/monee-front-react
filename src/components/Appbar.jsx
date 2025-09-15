@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ProfileDrawer from "./ProfileDrawer.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useAuth } from "./context/AuthContext.jsx";
 
 const pages = [
   { title: "Visão Geral", path: "/overview" },
@@ -21,6 +22,9 @@ const pages = [
 
 export default function Appbar() {
   const navigate = useNavigate();
+
+  //dados do usuário
+  const { user } = useAuth();
 
   // controle do drawer
   const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -174,6 +178,7 @@ export default function Appbar() {
                 flex: 0.5,
                 display: "flex",
                 justifyContent: "flex-start",
+                alignItems: "center",
                 gap: 0.5,
               }}
             >
@@ -188,6 +193,9 @@ export default function Appbar() {
                   <AccountCircleIcon sx={{ color: "white" }} />
                 </IconButton>
               </Tooltip>
+              <Typography sx={{ color: "white", fontWeight: "bold" }}>
+                {user.name}
+              </Typography>
             </Box>
           </Box>
         </Toolbar>

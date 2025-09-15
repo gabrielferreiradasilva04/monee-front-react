@@ -16,14 +16,13 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "../../services/axiosConfig.js";
 import { useNotification } from "../context/NotificationProvider.jsx";
 import React from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 
 export default function LoginForm() {
   //vairáiveis de controle de autenticacao
-  const { login } = useAuth();
+  const { login, user } = useAuth();
 
   //variáveis para as notificações
   const { showNotification } = useNotification();
@@ -49,7 +48,7 @@ export default function LoginForm() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -58,20 +57,18 @@ export default function LoginForm() {
       return;
     }
 
-    api
-      .post("/auth/login", { email, password }, { withCredentials: true })
-      .then((response) => {
-        login(true);
-        navigate("/overview");
-      })
-      .catch((err) => {
-        showNotification(
-          err.response?.data?.message ||
-            "Credenciais inválidas ou desabilitadas",
-          "error"
-        );
-      })
-      .finally(() => setLoading(false));
+    try {
+      await login(email, password);
+      navigate("/overview");
+    } catch (err) {
+      showNotification(
+        err.response?.data?.message || "Credenciais inválidas ou desabilitadas",
+        "error"
+      );
+    } finally {
+      setLoading(false);
+      console.log(user.name)
+    }
   };
 
   return (

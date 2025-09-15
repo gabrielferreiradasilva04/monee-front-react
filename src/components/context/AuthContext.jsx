@@ -20,7 +20,10 @@ export function AuthProvider({ children }) {
         setIsAuthenticated(true);
         return api.get("/auth/me", { withCredentials: true });
       })
-      .then((res) => setUser(res.data))
+      .then((res) => {
+        setUser(res.data);
+        console.log(res.data);
+      })
       .catch(() => {
         setIsAuthenticated(false);
         setUser(null);
@@ -28,7 +31,24 @@ export function AuthProvider({ children }) {
       .finally(() => setLoading(false));
   }, []);
 
-  const login = (authenticated) => setIsAuthenticated(authenticated);
+  const login = async (email, password) => {
+    try {
+      const { data } = await api.post(
+        "/auth/login",
+        { email, password },
+        { withCredentials: true }
+      );
+      setUser(data);
+      setIsAuthenticated(true);
+      console.log(user.name);
+
+      return true;
+    } catch (err) {
+      setUser(null);
+      setIsAuthenticated(false);
+      throw err;
+    }
+  };
 
   const logout = async () => {
     try {
@@ -41,7 +61,9 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, loading }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, logout, loading, user }}
+    >
       {children}
     </AuthContext.Provider>
   );

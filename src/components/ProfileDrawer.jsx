@@ -37,7 +37,7 @@ export default function ProfileDrawer({ open, onClose, user }) {
             size="big"
             onClick={() => {
               logout();
-              navigate("/login");
+              //navigate("/login");
             }}
           >
             <LogoutIcon sx={{ color: "red" }} />
