@@ -1,7 +1,7 @@
 import { Box, Button, Divider, TextField } from "@mui/material";
 import React from "react";
 
-export default function ProfileForm() {
+export default function ProfileForm({user}) {
   const handleSubmit = () => {};
   return (
     <>
@@ -18,7 +18,7 @@ export default function ProfileForm() {
             size="small"
             label="Nome"
             disabled
-            value={"Gabriel"}
+            value={user.name}
           ></TextField>
           <TextField
             id="profile-email"
@@ -26,7 +26,7 @@ export default function ProfileForm() {
             size="small"
             label="E-mail"
             disabled
-            value={"fulano@fulano"}
+            value={user.email}
           ></TextField>
           <TextField
             id="profile-phone"
@@ -34,7 +34,7 @@ export default function ProfileForm() {
             size="small"
             label="Telefone / Celular"
             disabled
-            value={"41999999"}
+            value={user.phone}
           ></TextField>
           <Divider />
           <Button

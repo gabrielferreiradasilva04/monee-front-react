@@ -67,7 +67,6 @@ export default function LoginForm() {
       );
     } finally {
       setLoading(false);
-      console.log(user.name)
     }
   };
 

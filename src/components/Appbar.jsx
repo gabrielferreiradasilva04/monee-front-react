@@ -200,7 +200,7 @@ export default function Appbar() {
           </Box>
         </Toolbar>
       </AppBar>
-      <ProfileDrawer open={openDrawer} onClose={toggleDrawer(false)} />
+      <ProfileDrawer open={openDrawer} onClose={toggleDrawer(false)} user={user} />
     </>
   );
 }

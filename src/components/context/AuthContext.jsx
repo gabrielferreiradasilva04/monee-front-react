@@ -40,8 +40,6 @@ export function AuthProvider({ children }) {
       );
       setUser(data);
       setIsAuthenticated(true);
-      console.log(user.name);
-
       return true;
     } catch (err) {
       setUser(null);

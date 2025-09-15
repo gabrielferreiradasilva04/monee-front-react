@@ -3,7 +3,6 @@ import {
   Button,
   Drawer,
   IconButton,
-  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -37,7 +36,6 @@ export default function ProfileDrawer({ open, onClose, user }) {
             size="big"
             onClick={() => {
               logout();
-              //navigate("/login");
             }}
           >
             <LogoutIcon sx={{ color: "red" }} />
@@ -46,7 +44,7 @@ export default function ProfileDrawer({ open, onClose, user }) {
       </Box>
 
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <ProfileForm />
+        <ProfileForm user={user} />
         <Button
           variant="contained"
           sx={{
