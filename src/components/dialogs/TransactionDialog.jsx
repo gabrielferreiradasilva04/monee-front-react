@@ -24,9 +24,8 @@ import CheckIcon from "@mui/icons-material/Check";
 import React, { useState } from "react";
 
 export default function TransactionDialog({ open, onClose }) {
-  const [transactionType, setTransactionType] = useState("saida");
+  const [transactionType, setTransactionType] = useState("DESPESA");
   const [transactionCategory, setTransactionCategory] = useState("");
-  const [tags, setTags] = useState([]);
   const [bankAccount, setBankAccount] = useState("");
   const [fixed, setFixed] = useState(false);
 
@@ -68,18 +67,15 @@ export default function TransactionDialog({ open, onClose }) {
             onChange={(e) => setTransactionType(e.target.value)}
           >
             <FormControlLabel
-              value="entrada"
+              value="RECEITA"
               control={<Radio />}
-              label="Entrada"
+              label="Receita"
             />
-            <FormControlLabel value="saida" control={<Radio />} label="Saída" />
+            <FormControlLabel value="DESPESA" control={<Radio />} label="Despesa" />
           </RadioGroup>
         </FormControl>
 
         <Grid container spacing={2}>
-          <Grid size={{ xs: 12 }}>
-            <TextField fullWidth label="Título" size="small" />
-          </Grid>
           <Grid size={{ xs: 12 }}>
             <TextField
               fullWidth
@@ -101,31 +97,6 @@ export default function TransactionDialog({ open, onClose }) {
                 {transactionCategories.map((cat) => (
                   <MenuItem key={cat} value={cat}>
                     {cat}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Grid size={{ xs: 6 }}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Etiquetas</InputLabel>
-              <Select
-                multiple
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
-                input={<OutlinedInput label="Etiquetas" />}
-                renderValue={(selected) => (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-              >
-                {tagsOptions.map((tag) => (
-                  <MenuItem key={tag} value={tag}>
-                    {tag}
                   </MenuItem>
                 ))}
               </Select>
