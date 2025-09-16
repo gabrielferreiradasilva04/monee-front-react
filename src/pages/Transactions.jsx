@@ -7,9 +7,18 @@ import SearchBar from "../components/SearchBar";
 import AddIcon from "@mui/icons-material/Add";
 import TransactionBox from "../components/TransactionBox";
 import TransactionSummary from "../components/TransactionSummary";
-
+import { useState } from "react";
+import TransactionDialog from "../components/dialogs/TransactionDialog";
 dayjs.locale("pt-br");
 export default function Transactions() {
+  //variáveis de controle do dialog de transações
+  const [isOpenDialogTransactions, setIsOpenDialogTransactions] = useState(false);
+
+
+  const toggleDialogTransactions = () =>{
+    setIsOpenDialogTransactions((prev) => !prev)
+  }
+
   const transactions = [
     {
       id: 1,
@@ -74,6 +83,7 @@ export default function Transactions() {
                 tabIndex={-1}
                 endIcon={<AddIcon />}
                 sx={{ fontWeight: "bold" }}
+                onClick={toggleDialogTransactions}
               >
                 Lançamentos
               </Button>
@@ -108,6 +118,7 @@ export default function Transactions() {
 
         </Box>
       </PageContainer>
+      <TransactionDialog open={isOpenDialogTransactions} onClose={toggleDialogTransactions} />
     </>
   );
 }
