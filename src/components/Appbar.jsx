@@ -9,6 +9,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import SettingsIcon from '@mui/icons-material/Settings';
 import ProfileDrawer from "./ProfileDrawer.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useAuth } from "./context/AuthContext.jsx";
@@ -182,6 +183,13 @@ export default function Appbar() {
                 gap: 0.5,
               }}
             >
+
+              <Tooltip title="Configurações">
+                <IconButton size="big">
+                  <SettingsIcon sx={{ color: "white" }} />
+                </IconButton>
+              </Tooltip>
+
               <Tooltip title="Praticar">
                 <IconButton size="big">
                   <SportsEsportsIcon sx={{ color: "white" }} />
@@ -193,9 +201,6 @@ export default function Appbar() {
                   <AccountCircleIcon sx={{ color: "white" }} />
                 </IconButton>
               </Tooltip>
-              <Typography sx={{ color: "white", fontWeight: "bold" }}>
-                {user.name}
-              </Typography>
             </Box>
           </Box>
         </Toolbar>

@@ -30,7 +30,6 @@ export default function TransactionDialog({ open, onClose }) {
   const [fixed, setFixed] = useState(false);
 
   const transactionCategories = ["Alimentação", "Transporte", "Moradia", "Saúde", "Lazer"];
-  const tagsOptions = ["Essencial", "Urgente", "Planejado", "Supérfluo"];
   const bankAccounts = [
     "Conta Corrente",
     "Poupança",
