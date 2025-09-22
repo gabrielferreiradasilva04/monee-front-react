@@ -185,7 +185,7 @@ export default function Appbar() {
             >
 
               <Tooltip title="Configurações">
-                <IconButton size="big">
+                <IconButton size="big" onClick={() => navigate('/configuration')}>
                   <SettingsIcon sx={{ color: "white" }} />
                 </IconButton>
               </Tooltip>

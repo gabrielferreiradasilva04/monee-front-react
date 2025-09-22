@@ -10,6 +10,7 @@ import OpenFinance from "../pages/OpenFinance";
 import Transactions from "../pages/Transactions";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
+import Configuration from "../pages/Configuration";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ export default function AppRoutes() {
           <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
             {/*Rotas padrões protegidas*/}
             <Route path="overview" element={<Overview />}></Route>
+            <Route path="configuration" element={<Configuration />}></Route>
             <Route path="financial-goal" element={<FinancialGoal />}></Route>
             <Route path="open-finance" element={<OpenFinance />}></Route>
             <Route path="transactions" element={<Transactions />}></Route>
